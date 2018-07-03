@@ -2,21 +2,28 @@ import React from 'react'
 import 'bootstrap'
 import './css/product.css'
 
-class Product extends React.Component {
+export default class Product extends React.Component {
     render() {
-        const {product} = this.props
+        const {product, onButtonClick} = this.props
         const tags = product.tags.map(tag =>
-            <div className="col-auto btn btn-outline-info product-tags">{tag}</div>
+            <div className="btn btn-outline-info product-tags">{tag}</div>
         )
         return (
-            <div className="row card product">
-                <div className="col-12">
-                    <img src={product.picture} alt={product.name} className="card-img-top product-img"/>
-                </div>
-                <div className="col-12">
+            <div className="card product" onClick={onButtonClick}>
+                <div className="card-body">
+
+                    <img src={product.picture} alt={product.name} className="card-img-top product-img collapsed"
+                         data-toggle="collapse" data-target={"#" + product.id} aria-expanded="false"
+                         aria-controls={product.id}/>
+
+                    <p className="card-title">{product.name}</p>
+
                     {tags}
-                </div>
-                <div className="col-12">
+
+                    <p id={product.id} className="card-text product-description collapse" aria-labelledby="product"
+                         data-parent="#accordion">
+                        {product.about}
+                    </p>
 
                 </div>
 
@@ -24,5 +31,3 @@ class Product extends React.Component {
         )
     }
 }
-
-export default Product
