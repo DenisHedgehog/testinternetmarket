@@ -1,3 +1,7 @@
 .card-columns {
     width: 70%;
 }
+
+.card-columns .card {
+    display: inline-flex;
+}

@@ -1,0 +1,15 @@
+.logo {
+    background: rgba(255, 255, 255, 0.51);
+}
+
+.logo-img {
+    width: 5%;
+    height: 5%;
+}
+
+.logo-text {
+    font-family: Roboto, sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    vertical-align: middle;
+}

@@ -3,6 +3,9 @@ import 'bootstrap'
 import './css/product.css'
 
 export default class Product extends React.Component {
+    state = {
+        show: true
+    }
     render() {
         const {product, onButtonClick} = this.props
         const tags = product.tags.map(tag =>
