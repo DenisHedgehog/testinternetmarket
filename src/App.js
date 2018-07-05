@@ -2,18 +2,19 @@ import React from 'react'
 import './css/App.css'
 import ProductList from "./components/ProductList"
 import Header from './components/Header'
-import products from './products'
-import FilterList from "./components/FilterList"
+import FilterList from './components/FilterList'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
 class App extends React.Component {
     state = {
-        filters: null
+        filter: null
     }
 
     filtersCallback = (callback) => {
         console.log("from callback")
         console.log(callback)
-        this.setState({filters: callback})
+        this.setState({filter: callback})
     }
 
     render() {
@@ -21,7 +22,7 @@ class App extends React.Component {
             <div className="App">
                 <Header/>
                 <FilterList filtersCallback = {this.filtersCallback}/>
-                <ProductList products = {products} filter = {this.state.filters}/>
+                <ProductList filter = {this.state.filter}/>
             </div>
         )
     }

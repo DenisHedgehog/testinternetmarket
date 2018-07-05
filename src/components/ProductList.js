@@ -1,22 +1,21 @@
 import React from 'react'
 import 'bootstrap'
-import Product from "./Product"
 import './css/products.css'
+import Product from "./Product"
+import {connect} from 'react-redux'
 
-export default class ProductList extends React.Component {
-    state = {
-        openProductId: null
-    }
+class ProductList extends React.Component {
 
     render() {
         let products
-        this.props.filter ?
-            products = this.props.products.filter(product => product.tags.indexOf(this.props.filter) !== -1)
-            : products = this.props.products
+        if (!this.props.selectTag) {
+            products = this.props.products
+        } else {
+            console.log(`tag is ${this.props.selectTag}`)
+            products = this.props.products.filter(product => product.tags.indexOf(this.props.selectTag) !== -1)
+        }
         products = products.map(product =>
-            <Product product={product}
-                     isOpen={this.state.openProductId === product.id}
-                     onButtonClick={this.handleClick.bind(this, product.id)}/>
+            <Product key={product.id} product={product}/>
         )
 
         return (
@@ -26,8 +25,13 @@ export default class ProductList extends React.Component {
         )
     }
 
-
-    handleClick = openProductId => this.setState({
-        openProductId: this.state.openProductId === openProductId ? null : openProductId
-    })
 }
+
+function mapStateToProps(state) {
+    return {
+        products: state.products,
+        selectTag: state.selectTag
+    }
+}
+
+export default connect(mapStateToProps)(ProductList)

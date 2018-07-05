@@ -20,10 +20,10 @@ export default class Product extends React.Component {
     render() {
         const {product, onButtonClick} = this.props
         const tags = product.tags.map(tag =>
-            <div className="btn btn-outline-info product-tags">{tag}</div>
+            <div key={tag} className="btn btn-outline-info product-tags">{tag}</div>
         )
         return (
-            <div className="card product" onClick={onButtonClick}>
+            <div key={product.id} className="card product" onClick={onButtonClick}>
 
                 <div className="card-body">
 
@@ -41,11 +41,11 @@ export default class Product extends React.Component {
                     <div className="container">
                         <div className="row purchase">
                             <div className="col-12 mx-auto count">Количество:</div>
-                            <div className="col-2"></div>
+                            <div className="col-2"> </div>
                             <div className="col-2 btn btn-outline-info count-button" onClick={this.decreaseCount}>-</div>
                             <div className="col-4 count">{this.state.count}</div>
                             <div className="col-2 btn btn-outline-info count-button" onClick={this.increaseCount}>+</div>
-                            <div className="col-2"></div>
+                            <div className="col-2"> </div>
                             <div className="col-6 price">
                                 {product.price}
                             </div>
