@@ -1,7 +1,5 @@
 .card-columns {
     width: 70%;
-}
-
-.card-columns .card {
-    display: inline-flex;
+    column-count: 4;
+    column-span: page;
 }
