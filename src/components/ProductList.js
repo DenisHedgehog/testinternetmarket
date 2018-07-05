@@ -1,7 +1,7 @@
 import React from 'react'
 import 'bootstrap'
 import Product from "./Product"
-import './css/productlist.css'
+import './css/products.css'
 
 export default class ProductList extends React.Component {
     state = {
@@ -10,25 +10,14 @@ export default class ProductList extends React.Component {
 
     render() {
         let products
-        if (this.props.filters) {
-            // products = this.props.products
-            this.props.filters.forEach(filter => products = this.props.products.filter(product => product.tags.indexOf(filter) !== -1))
-            products = products.map(product =>
-                <Product product={product}
-                         isOpen={this.state.openProductId === product.id}
-                         onButtonClick={this.handleClick.bind(this, product.id)}/>
-            )
-            console.log(`filters ${this.props.filters}`)
-            console.log(products)
-        } else {
-            products = this.props.products.map(product =>
-                <Product product={product}
-                         isOpen={this.state.openProductId === product.id}
-                         onButtonClick={this.handleClick.bind(this, product.id)}/>
-            )
-            console.log("without filters")
-            console.log(products)
-        }
+        this.props.filter ?
+            products = this.props.products.filter(product => product.tags.indexOf(this.props.filter) !== -1)
+            : products = this.props.products
+        products = products.map(product =>
+            <Product product={product}
+                     isOpen={this.state.openProductId === product.id}
+                     onButtonClick={this.handleClick.bind(this, product.id)}/>
+        )
 
         return (
             <div className="card-columns mx-auto">
@@ -36,6 +25,7 @@ export default class ProductList extends React.Component {
             </div>
         )
     }
+
 
     handleClick = openProductId => this.setState({
         openProductId: this.state.openProductId === openProductId ? null : openProductId

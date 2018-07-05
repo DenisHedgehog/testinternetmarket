@@ -21,7 +21,7 @@ class App extends React.Component {
             <div className="App">
                 <Header/>
                 <FilterList filtersCallback = {this.filtersCallback}/>
-                <ProductList products={products} filters = {this.state.filters}/>
+                <ProductList products = {products} filter = {this.state.filters}/>
             </div>
         )
     }

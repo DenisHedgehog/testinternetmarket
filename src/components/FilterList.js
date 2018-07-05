@@ -4,17 +4,11 @@ import products from "../products"
 
 export default class FilterList extends React.Component {
     state = {
-        activeFilters: []
+        activeFilter: null
     }
 
     render() {
         const filtered = this.getAllTags(products)
-        // // console.log(filtered)
-        // this.state.activeFilters.forEach(tag => {
-        //     console.log("filtered filter")
-        //     filtered.filter(filter => filter.tags.)
-        //     console.log(tag)
-        // })
         const filters = filtered.map(filter =>
             <div className="btn btn-outline-info tag" onClick={() => this.clickByTag(filter)}>
                 {filter}
@@ -31,21 +25,8 @@ export default class FilterList extends React.Component {
     }
 
     clickByTag(filter) {
-        console.log(this.state.activeFilters.indexOf(filter))
-        if (this.state.activeFilters.indexOf(filter) === -1) {
-            console.log("not exist")
-            this.state.activeFilters.push(filter)
-            console.log(this.state.activeFilters)
-        } else {
-            console.log("exist")
-            if (this.state.activeFilters.indexOf(filter) === 0) {
-                this.state.activeFilters.shift()
-            } else {
-                this.state.activeFilters.splice(this.state.activeFilters.indexOf(filter), this.state.activeFilters.indexOf(filter))
-            }
-            console.log(this.state.activeFilters)
-        }
-        this.props.filtersCallback(this.state.activeFilters)
+        this.state.activeFilter === filter ? this.setState({activeFilter: null}) : this.setState({activeFilter: filter})
+        this.props.filtersCallback(this.state.activeFilter)
     }
 
     getAllTags = (products) => {
