@@ -1,6 +1,7 @@
 import React from 'react'
 import 'bootstrap'
 import './css/products.css'
+import Filter from './Filter'
 
 export default class Product extends React.Component {
     state = {
@@ -20,7 +21,7 @@ export default class Product extends React.Component {
     render() {
         const {product, onButtonClick} = this.props
         const tags = product.tags.map(tag =>
-            <div key={tag} className="btn btn-outline-info product-tags">{tag}</div>
+            <Filter key={tag} filter={tag}/>
         )
         return (
             <div key={product.id} className="card product" onClick={onButtonClick}>

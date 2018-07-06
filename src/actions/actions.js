@@ -4,3 +4,17 @@ export const selectTag = (ref) => {
         payload: ref
     }
 }
+
+export const searchByName = (name) => {
+    return {
+        type: "SEARCH_BY_NAME",
+        payload: name
+    }
+}
+
+export const addPurchase = (product, count) => {
+    return {
+        type: "ADD_PURCHASE",
+        payload: {product: product, count: count}
+    }
+}

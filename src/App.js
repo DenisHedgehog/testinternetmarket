@@ -1,10 +1,10 @@
 import React from 'react'
 import './css/App.css'
-import ProductList from "./components/ProductList"
+import ProductList from './components/ProductList'
 import Header from './components/Header'
 import FilterList from './components/FilterList'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import Search from './components/Search'
+import Purchases from './components/Purchases'
 
 class App extends React.Component {
     state = {
@@ -22,7 +22,9 @@ class App extends React.Component {
             <div className="App">
                 <Header/>
                 <FilterList filtersCallback = {this.filtersCallback}/>
+                <Search />
                 <ProductList filter = {this.state.filter}/>
+                <Purchases />
             </div>
         )
     }

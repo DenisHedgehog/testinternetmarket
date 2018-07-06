@@ -7,13 +7,17 @@ import {connect} from 'react-redux'
 class ProductList extends React.Component {
 
     render() {
-        let products
-        if (!this.props.selectTag) {
-            products = this.props.products
-        } else {
-            console.log(`tag is ${this.props.selectTag.current.innerText}`)
+        let products = this.props.products
+
+        if (this.props.selectTag) {
             products = this.props.products.filter(product => product.tags.indexOf(this.props.selectTag.current.innerText) !== -1)
+
         }
+
+        if (this.props.searchByName !== null) {
+            products = products.filter(product => product.name.indexOf(this.props.searchByName.current.value) !== -1)
+        }
+
         products = products.map(product =>
             <Product key={product.id} product={product}/>
         )
@@ -28,10 +32,11 @@ class ProductList extends React.Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state.selectTag)
+    console.log(state.searchByName)
     return {
         products: state.products,
-        selectTag: state.selectTag
+        selectTag: state.selectTag,
+        searchByName: state.searchByName
     }
 }
 
