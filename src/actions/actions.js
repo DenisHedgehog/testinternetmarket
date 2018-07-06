@@ -1,7 +1,6 @@
-export const selectTag = (tag) => {
-    console.log(tag)
+export const selectTag = (ref) => {
     return {
         type: "TAG_SELECTED",
-        payload: tag
+        payload: ref
     }
 }

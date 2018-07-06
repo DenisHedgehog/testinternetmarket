@@ -11,8 +11,8 @@ class ProductList extends React.Component {
         if (!this.props.selectTag) {
             products = this.props.products
         } else {
-            console.log(`tag is ${this.props.selectTag}`)
-            products = this.props.products.filter(product => product.tags.indexOf(this.props.selectTag) !== -1)
+            console.log(`tag is ${this.props.selectTag.current.innerText}`)
+            products = this.props.products.filter(product => product.tags.indexOf(this.props.selectTag.current.innerText) !== -1)
         }
         products = products.map(product =>
             <Product key={product.id} product={product}/>
@@ -28,6 +28,7 @@ class ProductList extends React.Component {
 }
 
 function mapStateToProps(state) {
+    console.log(state.selectTag)
     return {
         products: state.products,
         selectTag: state.selectTag
