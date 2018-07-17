@@ -2,21 +2,11 @@ import React from 'react'
 import 'bootstrap'
 import './css/products.css'
 import Filter from './Filter'
+import {addProductToBasket} from "../actions/actions";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 
-export default class Product extends React.Component {
-    state = {
-        count: 1
-    }
-
-    decreaseCount = () => {
-        if (this.state.count > 0) {
-            this.setState({count: this.state.count - 1})
-        }
-    }
-
-    increaseCount = () => {
-            this.setState({count: this.state.count + 1})
-    }
+class Product extends React.Component {
 
     render() {
         const {product, onButtonClick} = this.props
@@ -41,16 +31,10 @@ export default class Product extends React.Component {
 
                     <div className="container">
                         <div className="row purchase">
-                            <div className="col-12 mx-auto count">Количество:</div>
-                            <div className="col-2"> </div>
-                            <div className="col-2 btn btn-outline-info count-button" onClick={this.decreaseCount}>-</div>
-                            <div className="col-4 count">{this.state.count}</div>
-                            <div className="col-2 btn btn-outline-info count-button" onClick={this.increaseCount}>+</div>
-                            <div className="col-2"> </div>
                             <div className="col-6 price">
                                 {product.price}
                             </div>
-                            <div className="col-6 btn btn-primary">
+                            <div className="col-6 btn btn-primary" onClick={() => this.props.addProductToBasket(product, 1)}>
                                 В корзину
                             </div>
                         </div>
@@ -62,3 +46,9 @@ export default class Product extends React.Component {
         )
     }
 }
+
+function matchDispatchToProps(dispatch) {
+    return bindActionCreators({addProductToBasket: addProductToBasket}, dispatch)
+}
+
+export default connect(null, matchDispatchToProps) (Product)

@@ -12,7 +12,7 @@ export const searchByName = (name) => {
     }
 }
 
-export const addPurchase = (product, count) => {
+export const addProductToBasket = (product, count) => {
     return {
         type: "ADD_PURCHASE",
         payload: {product: product, count: count}

@@ -4,7 +4,7 @@ import ProductList from './components/ProductList'
 import Header from './components/Header'
 import FilterList from './components/FilterList'
 import Search from './components/Search'
-import Purchases from './components/Purchases'
+import Basket from './components/Basket'
 
 class App extends React.Component {
     state = {
@@ -24,7 +24,7 @@ class App extends React.Component {
                 <FilterList filtersCallback = {this.filtersCallback}/>
                 <Search />
                 <ProductList filter = {this.state.filter}/>
-                <Purchases />
+                <Basket />
             </div>
         )
     }

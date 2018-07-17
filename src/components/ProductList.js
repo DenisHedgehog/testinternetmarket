@@ -8,7 +8,7 @@ class ProductList extends React.Component {
 
     render() {
         let products = this.props.products
-
+        // console.log(products)
         if (this.props.selectTag) {
             products = this.props.products.filter(product => product.tags.indexOf(this.props.selectTag.current.innerText) !== -1)
 
@@ -32,7 +32,6 @@ class ProductList extends React.Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state.searchByName)
     return {
         products: state.products,
         selectTag: state.selectTag,
